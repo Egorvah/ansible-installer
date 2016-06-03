@@ -1,0 +1,16 @@
+- name: Creating user "{{ user_name }}" with sudoer
+  user: name={{ user_name }} password={{ user_password |password_hash('sha512') }} groups="sudo" append=yes
+  sudo: yes
+
+- name: create ssh directory
+  file: path=//home/{{ user_name }}/.ssh state=directory owner={{ user_name }} group={{ user_name }} mode=0700
+
+- name: add id_rsa
+  template: src=id_rsa dest=/home/{{ user_name }}/.ssh/id_rsa owner={{ user_name }} group={{ user_name }} mode=0400
+
+- name: add id_rsa.pub
+  template: src=id_rsa.pub dest=/home/{{ user_name }}/.ssh/id_rsa.pub owner={{ user_name }} group={{ user_name }} mode=0400
+
+- name: add authorized_keys
+  template: src=authorized_keys dest=/home/{{ user_name }}/.ssh/authorized_keys owner={{ user_name }} group={{ user_name }} mode=0755
+
