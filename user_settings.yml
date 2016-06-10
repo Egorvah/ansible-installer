@@ -1,0 +1,7 @@
+- hosts: user
+  sudo: yes
+  vars:
+    - user_name: "test"
+  roles:
+  - { role: vim }
+  - { role: zsh }

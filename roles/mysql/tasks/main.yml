@@ -1,11 +1,11 @@
-- name: Install MySQL
+- name: install MySQL
   apt: name={{ item }} update_cache=yes cache_valid_time=3600 state=present
   sudo: yes
   with_items:
   - python-mysqldb
   - mysql-server
 
-- name: Start the MySQL service
+- name: start the MySQL service
   sudo: yes
   service: 
     name: mysql 
@@ -25,5 +25,6 @@
   with_items:
     - "{{ ansible_hostname }}"
     - 127.0.0.1
+    - 85.143.222.197
     - ::1
-    - localhost 
+    - localhost

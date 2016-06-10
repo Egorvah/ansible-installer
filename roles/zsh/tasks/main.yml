@@ -1,0 +1,21 @@
+- name: Install zsh
+  apt:
+    pkg: zsh
+  
+- name: Clone oh-my-zsh repo
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ user_name }}/.oh-my-zsh depth=1 force=no
+
+- name: remove standard zshrc
+  file: path=/home/{{ user_name }}/.zshrc state=absent
+
+- name: deploy .zshrc
+  template: src=zshrc dest=/home/{{ user_name }}/.zshrc owner={{ user_name }}
+
+- name: ovner folder oh-my-zsh
+  command: "chown -R {{ user_name }}:{{ user_name }} /home/{{ user_name }}/.oh-my-zsh"
+
+- name: download theme
+  get_url: url=https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme dest=/home/{{ user_name }}/.oh-my-zsh/themes/bullet-train.zsh-theme mode=0777  owner={{ user_name }}
+
+- name: Set zsh as default shell
+  user: name={{ user_name }} shell=/bin/zsh

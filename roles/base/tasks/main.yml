@@ -3,8 +3,15 @@
     name: "{{ item }}"
   with_items:
     - git
+    - git-core
     - nano
     - vim
     - htop
     - screen
+    - tmux
+    - zip
     - unzip
+    - mc
+    - dos2unix
+    - software-properties-common
+    - aptitude

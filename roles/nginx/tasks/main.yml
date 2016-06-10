@@ -4,8 +4,18 @@
 - name: Install nginx
   action: apt pkg=nginx-extras state=installed update_cache=true
 
-- name: add dev config
-  template: src=dev.conf dest=/etc/nginx/sites-enabled/dev.conf
+- name: add nginx config
+  template: src=nginx dest=/etc/nginx/nginx.conf
+  notify: restart nginx
+
+- name: add .htpasswd
+  template: src=htpasswd dest=/var/www/.htpasswd force=no
+  notify: restart nginx
+
+- name: add sites config
+  template: src={{ item }} dest=/etc/nginx/sites-enabled/{{ item | basename }}
+  with_fileglob:
+    - ../templates/*.conf
   notify: restart nginx
 
 #- name: Disable default site

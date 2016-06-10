@@ -1,0 +1,9 @@
+- name: clone
+  git: repo=https://github.com/phpmyadmin/phpmyadmin.git dest=/var/www/pma depth=1 update=no
+
+- name: composer
+  command: composer install chdir=/var/www/pma
+
+- name: add nginx config
+  template: src=pma.conf dest=/etc/nginx/sites-enabled/pma.conf
+  notify: restart nginx
