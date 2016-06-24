@@ -1,0 +1,8 @@
+- name: Download slack
+  get_url: 
+    url="https://downloads.slack-edge.com/linux_releases/slack-desktop-2.0.6-amd64.deb"
+    dest="/home/{{ user_name }}/Downloads/slack.deb"
+
+- name: Install slack
+  apt: deb="/home/{{ user_name }}/Downloads/slack.deb"
+  sudo: true

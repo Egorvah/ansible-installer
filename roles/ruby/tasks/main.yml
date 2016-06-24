@@ -1,0 +1,29 @@
+- name: Install libreadline
+  apt:
+    pkg: libreadline-dev
+
+- name: clone rbenv
+  git: repo=https://github.com/rbenv/rbenv.git dest=/home/{{ user_name }}/.rbenv depth=1 force=no
+
+- name: export rbenv to .bash_profile
+  command: bash -lc "echo 'export PATH="/home/{{ user_name }}/.rbenv/bin:$PATH"' >> /home/{{ user_name }}/.bash_profile"
+
+
+- name: export rbenv to .bashrc
+  command: bash -lc "echo 'export PATH="/home/{{ user_name }}/.rbenv/bin:$PATH"' >> /home/{{ user_name }}/.bashrc"
+
+- name: export rbenv to .zshrc
+  command: bash -lc "echo 'export PATH="/home/{{ user_name }}/.rbenv/bin:$PATH"' >> /home/{{ user_name }}/.zshrc"
+
+- name: clone ruby-build
+  git: repo=https://github.com/sstephenson/ruby-build.git dest=/home/{{ user_name }}/.rbenv/plugins/ruby-build depth=1 force=no
+
+
+- name: install ruby 2.3.1
+  command: bash -lc "rbenv install 2.3.1"
+
+- name: global ruby 2.3.1
+  command: bash -lc "rbenv global 2.3.1"
+
+- name: rbenv rehash
+  command: bash -lc "rbenv rehash"

@@ -1,0 +1,5 @@
+- name: download telegram
+  get_url: url=http://tdesktop.com/linux dest=/opt/telegram.tar.xz mode=0777 owner={{ user_name }}
+
+- name: unarchive telegram
+  command: bash -lc "cd /opt && tar -xf telegram.tar.xz"

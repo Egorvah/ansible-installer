@@ -1,2 +1,5 @@
 [vps]
 test_server ansible_ssh_host=10.0.0.2 ansible_ssh_user=ansible
+
+[local]
+my_machine ansible_ssh_host=127.0.0.1 ansible_ssh_user=test

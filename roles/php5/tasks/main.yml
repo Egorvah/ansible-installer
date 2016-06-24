@@ -1,20 +1,31 @@
-- name: install php5
+- name: Add php repository
+  apt_repository: repo='ppa:ondrej/php'
+
+- name: install php5.6
   apt: pkg={{ item }}
   with_items:
-    - php5
-    - php5-cgi
-    - php5-fpm
-    - php5-memcache
-    - php5-memcached
-    - php5-mcrypt
-    - php5-mysql
-    - php5-gd
-    - php5-curl
-    - php5-xmlrpc
+    - php5.6-common
+    - php5.6
+    - php5.6-cgi
+    - php5.6-dev
+    - php5.6-fpm
+    - php5.6-memcache
+    - php5.6-memcached
+    - php5.6-mcrypt
+    - php5.6-mysql
+    - php5.6-pdo
+    - php5.6-sqlite3
+    - php5.6-pgsql
+    - php5.6-mbstring
+    - php5.6-gd
+    - php5.6-curl
+    - php5.6-xml
+    - php5.6-xmlrpc
+    - php5.6-tidy
 
-- name: change listen socket
-  lineinfile:
-    dest: '/etc/php5/fpm/pool.d/www.conf'
-    insertafter: 'listen = 127.0.0.1:9000'
-    line: 'listen = /var/run/fpm.socket'
-  notify: restart php5-fpm
+#- name: change listen socket
+#  lineinfile:
+#    dest: '/etc/php5/fpm/pool.d/www.conf'
+#    insertafter: 'listen = 127.0.0.1:9000'
+#    line: 'listen = /var/run/fpm.socket'
+#  notify: restart php5-fpm

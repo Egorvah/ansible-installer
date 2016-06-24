@@ -37,6 +37,13 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 hi Directory guifg=#FF0000 ctermfg=166
 
 
+" = Buffer tabs
+set hidden
+nnoremap <F2> :Bdelete<CR>
+nnoremap <F3> :bprev<CR>
+nnoremap <F4> :bnext<CR>
+let g:buftabline_numbers=1 " show buffer nunber
+let g:buftabline_separators=1 " show separators between tabs
 
 set list listchars=tab:→\ ,trail:·
 highlight SpecialKey ctermfg=8
@@ -48,11 +55,20 @@ set ttyfast
 
 " Enable mouse use in all modes 
 set mouse=a  
+"set mouse=nicr
 
 " Set this to the name of your terminal that supports mouse codes. 
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm 
 set ttymouse=xterm2
 
+function! SwitchMouseMode()
+	if &mouse == 'a'
+		:set mouse=nicr
+	else
+		:set mouse=a
+	endif
+endfunction
+noremap <F5> :call SwitchMouseMode()<CR>
 
 " = PHP
 
@@ -67,5 +83,8 @@ let g:phpcomplete_mappings = {
 "let g:phpcomplete_active_class_extensions
 "let g:phpcomplete_active_interface_extensions
 "let g:phpcomplete_active_constant_extensions
+
+
+" = HotKeys
 
 

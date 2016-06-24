@@ -24,20 +24,11 @@
   git: repo=https://github.com/vim-scripts/xoria256.vim.git dest=/home/{{ user_name }}/.vim/bundle/xoria256.vim depth=1 force=no
 
 # Plugins
-- name: install plugin nerdtree
-  git: repo=https://github.com/scrooloose/nerdtree.git dest=/home/{{ user_name }}/.vim/bundle/nerdtree depth=1 force=no
-
 - name: install plugin vim-airline
   git: repo=https://github.com/vim-airline/vim-airline.git dest=/home/{{ user_name }}/.vim/bundle/vim-airline depth=1 force=no
 
-- name: install plugin auto-pairs
-  git: repo=https://github.com/yukunlin/auto-pairs.git dest=/home/{{ user_name }}/.vim/bundle/auto-pairs depth=1 force=no
-
 - name: install plugin ultisnips
   git: repo=https://github.com/SirVer/ultisnips.git dest=/home/{{ user_name }}/.vim/bundle/ultisnips depth=1 force=no
-
-- name: install plugin vim-nerdtree-tabs
-  git: repo=https://github.com/jistr/vim-nerdtree-tabs.git dest=/home/{{ user_name }}/.vim/bundle/vim-nerdtree-tabs depth=1 force=no
 
 - name: install plugin tcomment_vim
   git: repo=https://github.com/tomtom/tcomment_vim.git dest=/home/{{ user_name }}/.vim/bundle/tcomment_vim depth=1 force=no
@@ -48,17 +39,19 @@
 - name: install plugin syntastic
   git: repo=https://github.com/scrooloose/syntastic.git dest=/home/{{ user_name }}/.vim/bundle/syntastic depth=1 force=no
 
-- name: install plugin phpcomplete.vim
-  git: repo=https://github.com/shawncplus/phpcomplete.vim.git dest=/home/{{ user_name }}/.vim/bundle/phpcomplete.vim depth=1 force=no
-
 - name: install plugin nerdcommenter
   git: repo=https://github.com/scrooloose/nerdcommenter.git dest=/home/{{ user_name }}/.vim/bundle/nerdcommenter depth=1 force=no
 
-- name: install plugin vim-php-cs-fixer
-  git: repo=https://github.com/stephpy/vim-php-cs-fixer.git dest=/home/{{ user_name }}/.vim/bundle/vim-php-cs-fixer depth=1 force=no
+- name: install plugin vim-easymotion
+  git: repo=https://github.com/easymotion/vim-easymotion.git dest=/home/{{ user_name }}/.vim/bundle/vim-easymotion depth=1 force=no
 
-- name: install plugin vim-coffee-script
-  git: repo=https://github.com/kchmck/vim-coffee-script.git dest=/home/{{ user_name }}/.vim/bundle/vim-coffee-script depth=1 force=no
+
+# similar IDE
+- name: install plugin nerdtree
+  git: repo=https://github.com/scrooloose/nerdtree.git dest=/home/{{ user_name }}/.vim/bundle/nerdtree depth=1 force=no
+
+- name: install plugin buftabline
+  git: repo=https://github.com/ap/vim-buftabline.git dest=/home/{{ user_name }}/.vim/bundle/vim-buftabline depth=1 force=no
 
 - name: install plugin vim-auto-save
   git: repo=https://github.com/vim-scripts/vim-auto-save.git dest=/home/{{ user_name }}/.vim/bundle/vim-auto-save depth=1 force=no
@@ -66,8 +59,21 @@
 - name: install plugin editorconfig-vim
   git: repo=https://github.com/editorconfig/editorconfig-vim.git dest=/home/{{ user_name }}/.vim/bundle/editorconfig-vim depth=1 force=no
 
+- name: install plugin auto-pairs
+  git: repo=https://github.com/yukunlin/auto-pairs.git dest=/home/{{ user_name }}/.vim/bundle/auto-pairs depth=1 force=no
+
+# php
+
 - name: install plugin php.vim
   git: repo=https://github.com/StanAngeloff/php.vim.git dest=/home/{{ user_name }}/.vim/bundle/php.vim depth=1 force=no
 
-- name: install plugin vim-easymotion
-  git: repo=https://github.com/easymotion/vim-easymotion.git dest=/home/{{ user_name }}/.vim/bundle/vim-easymotion depth=1 force=no
+- name: install plugin vim-php-cs-fixer
+  git: repo=https://github.com/stephpy/vim-php-cs-fixer.git dest=/home/{{ user_name }}/.vim/bundle/vim-php-cs-fixer depth=1 force=no
+
+- name: install plugin phpcomplete.vim
+  git: repo=https://github.com/shawncplus/phpcomplete.vim.git dest=/home/{{ user_name }}/.vim/bundle/phpcomplete.vim depth=1 force=no
+
+# frontend
+
+- name: install plugin vim-coffee-script
+  git: repo=https://github.com/kchmck/vim-coffee-script.git dest=/home/{{ user_name }}/.vim/bundle/vim-coffee-script depth=1 force=no

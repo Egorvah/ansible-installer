@@ -1,0 +1,19 @@
+- name: "apt | ensure Google linux signing key present"
+  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
+
+- name: "Add repo Google chrome"
+  apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main' state=absent
+
+- name: "Add repo Google chrome"
+  copy:
+    content: "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main"
+    dest: "/etc/apt/sources.list.d/google-chrome.list"
+  register: google_repo
+
+- name: "update cache"
+  apt: update_cache=yes
+  when: google_repo.changed
+  
+- name: "Google chrome install"
+  apt: name=google-chrome-stable update_cache=yes
+

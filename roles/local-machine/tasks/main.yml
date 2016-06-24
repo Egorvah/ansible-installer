@@ -1,0 +1,45 @@
+- include: ssh.yml
+- include: powerline-fonts.yml
+- include: chrome.yml
+- include: slack.yml
+- include: telegram.yml
+
+
+- name: add partner repository
+  apt_repository: repo="{{item}}"
+  with_items:
+    - "deb http://archive.canonical.com/ubuntu {{ansible_distribution_release}} partner"
+    - "deb-src http://archive.canonical.com/ubuntu {{ansible_distribution_release}} partner"
+
+- name: install packages
+  apt: 
+    name: "{{ item }}"
+  with_items:
+    - dnsmasq
+    - guake
+    - keepassx
+    - skype
+    - krusader
+    - virtualbox
+    - pgadmin3
+#    - phantomjs
+
+- name: add dnsmasq config
+  template: src=dnsmasq.conf dest=/etc/dnsmasq.conf
+  notify: restart dnsmasq
+
+
+- name: add nginx dev config
+  template: src=dev.conf dest=/etc/nginx/sites-enabled/dev.conf
+  notify: restart nginx
+
+
+- name: create folser autostart
+  file: path=/home/{{ user_name }}/.config/autostart state=directory mode=0777
+
+- name: add autostart configs
+  template: src={{ item }} dest=/home/{{ user_name }}/.config/autostart/{{ item | basename }}
+  with_fileglob:
+    - ../templates/autostart/*.desktop
+
+

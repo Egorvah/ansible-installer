@@ -1,0 +1,6 @@
+- name: clone powerline fonts
+  git: repo=https://github.com/powerline/fonts.git dest=/home/{{ user_name }}/fonts depth=1 force=no
+
+- name: install powerline fonts
+  command: bash -lc "cd /home/{{ user_name }}/fonts && ./install.sh"
+

@@ -1,0 +1,17 @@
+- hosts: local
+  sudo: yes
+  vars:
+    - user_name: "test"
+    - mysql_root_password: 123
+  roles:
+  - { role: base }
+  - { role: nginx }
+  - { role: nodejs }
+  - { role: php7 }
+  - { role: mysql }
+  - { role: redis }
+  - { role: php5 }
+  - { role: ruby }
+  - { role: zsh }
+  - { role: vim }
+  - { role: local-machine }
