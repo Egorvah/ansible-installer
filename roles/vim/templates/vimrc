@@ -16,7 +16,8 @@ execute pathogen#infect()
 " = Theme
 set background=dark
 set t_Co=256
-colorscheme xoria256
+"colorscheme xoria256
+colorscheme darcula
 
 let g:airline_powerline_fonts = 1
 
@@ -36,14 +37,26 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 hi Directory guifg=#FF0000 ctermfg=166
 
+" NERS tree git
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "*",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
 
 " = Buffer tabs
 set hidden
-nnoremap <F2> :Bdelete<CR>
+nnoremap <F2> :BD<CR>
 nnoremap <F3> :bprev<CR>
 nnoremap <F4> :bnext<CR>
-let g:buftabline_numbers=1 " show buffer nunber
-let g:buftabline_separators=1 " show separators between tabs
+let g:buftabline_numbers=1 "show buffer number
+let g:buftabline_separators=1 "show separators between tabs
 
 set list listchars=tab:→\ ,trail:·
 highlight SpecialKey ctermfg=8
