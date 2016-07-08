@@ -99,5 +99,5 @@ let g:phpcomplete_mappings = {
 
 
 " = HotKeys
-
+noremap <F7> :set paste!<CR>
 

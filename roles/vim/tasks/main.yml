@@ -73,6 +73,12 @@
 - name: install plugin auto-pairs
   git: repo=https://github.com/yukunlin/auto-pairs.git dest=/home/{{ user_name }}/.vim/bundle/auto-pairs depth=1 force=no
 
+- name: install plugin ctrlp.vim
+  git: repo=https://github.com/kien/ctrlp.vim.git dest=/home/{{ user_name }}/.vim/bundle/ctrlp.vim depth=1 force=no
+
+- name: install plugin vim-surround
+  git: repo=https://github.com/tpope/vim-surround.git dest=/home/{{ user_name }}/.vim/bundle/vim-surround depth=1 force=no
+
 # PHP
 - name: install plugin php.vim
   git: repo=https://github.com/StanAngeloff/php.vim.git dest=/home/{{ user_name }}/.vim/bundle/php.vim depth=1 force=no
