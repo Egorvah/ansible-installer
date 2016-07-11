@@ -5,9 +5,12 @@
     - user_password: "123"
     - mysql_root_password: 123
   roles:
+  - { role: user }
   - { role: base }
   - { role: nginx }
   - { role: nodejs }
   - { role: php7 }
-  - { role: mysql }
-  - { role: user }
+  - { role: sendmail }
+  - { role: phpmyadmin }
+  - { role: docker }
+  - { role: linux-swap }

@@ -1,0 +1,17 @@
+- name: Create a Swap File
+  command: bash -lc "fallocate -l 2G /swapfile"
+
+- name: Enabling the Swap File
+  command: bash -lc "sudo chmod 600 /swapfile"
+
+- name: mkswap
+  command: bash -lc "mkswap /swapfile"
+
+- name: swapon
+  command: bash -lc "swapon /swapfile"
+
+- name: Backup fstab
+  command: bash -lc "cp /etc/fstab /etc/fstab.bak"
+
+- name: add swapfile to fstab
+  command: bash -lc "echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab"

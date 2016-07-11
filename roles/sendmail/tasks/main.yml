@@ -1,0 +1,20 @@
+- name: install packages
+  apt: 
+    name: "{{ item }}"
+  with_items:
+    - sendmail
+
+- name: add hostname
+  template: src=hostname dest=/etc/hostname
+
+- name: add hosts
+  template: src=hosts dest=/etc/hosts
+
+- name: restart hostname 
+  command: bash -lc "/etc/init.d/hostname.sh restart"
+
+- name: hostname
+  command: bash -lc "hostname"
+
+- name: hostname -f
+  command: bash -lc "hostname -f"
