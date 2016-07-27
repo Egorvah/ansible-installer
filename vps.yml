@@ -7,10 +7,11 @@
   roles:
   - { role: user }
   - { role: base }
+  - { role: docker }
   - { role: nginx }
   - { role: nodejs }
   - { role: php7 }
+  - { role: mysql-docker, mysql_root_password: '123',  mysql_docker_tag: 5.6,  mysql_docker_port: 3307 }
   - { role: sendmail }
   - { role: phpmyadmin }
-  - { role: docker }
   - { role: linux-swap }

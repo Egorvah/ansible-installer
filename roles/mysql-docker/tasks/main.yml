@@ -1,0 +1,16 @@
+- name: add mysql-docker
+  template: src=mysql-docker dest=/etc/init.d/mysql-docker-{{ mysql_docker_tag }} mode=0755 force=no
+
+- name: add mysql-docker service
+  template: src=mysql-docker.service dest=/lib/systemd/system/mysql-docker-{{ mysql_docker_tag }}.service force=no
+  register: mysql-docker-service
+
+- name: upload docker container
+  command: bash -lc "/etc/init.d/mysql-docker-{{ mysql_docker_tag }} init"
+  when: mysql-docker-service.changed
+
+- name: start daemon-reload
+  command: bash -lc "systemctl daemon-reload"
+
+- name: start service mysql-docker
+  command: bash -lc "systemctl start mysql-docker-{{ mysql_docker_tag }}.service"

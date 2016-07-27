@@ -1,0 +1,13 @@
+[Unit]
+Description=Mysql Docker Container Runner
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+ExecStart=/etc/init.d/mysql-docker-{{ mysql_docker_tag }} start
+ExecStop=/etc/init.d/mysql-docker-{{ mysql_docker_tag }} stop
+Restart=/etc/init.d/mysql-docker-{{ mysql_docker_tag }} restart
+
+[Install]
+WantedBy=multi-user.target

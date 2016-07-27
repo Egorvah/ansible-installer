@@ -1,0 +1,22 @@
+#! /bin/bash
+
+case "$1" in
+     init)
+          eval "docker run --name mysql-{{ mysql_docker_tag }} -e MYSQL_ROOT_PASSWORD={{ mysql_root_password }} -d -p {{ mysql_docker_port }}:3306 mysql:{{ mysql_docker_tag }}"
+          ;;
+     start)
+          eval "docker start mysql-{{ mysql_docker_tag }}"
+          ;;
+     stop)
+          eval "docker stop mysql-{{ mysql_docker_tag }}"
+          ;; 
+     restart)
+          eval "docker restart mysql-{{ mysql_docker_tag }}"
+          ;;
+     status)
+          echo "Us001"
+          ;;
+     *)
+          echo "Usage: mysql-docker-{{ mysql_docker_tag }} {start|stop|restart|status}"
+          ;;
+esac
