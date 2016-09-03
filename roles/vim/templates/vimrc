@@ -64,15 +64,16 @@ highlight SpecialKey ctermfg=8
 " = Mouse
 
 " Send more characters for redraws 
-set ttyfast  
+"set ttyfast  
 
 " Enable mouse use in all modes 
-set mouse=a  
-"set mouse=nicr
+"set mouse=a 
 
 " Set this to the name of your terminal that supports mouse codes. 
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm 
-set ttymouse=xterm2
+"set ttymouse=xterm2
+
+"set ttymouse=sgr
 
 function! SwitchMouseMode()
 	if &mouse == 'a'
@@ -81,7 +82,7 @@ function! SwitchMouseMode()
 		:set mouse=a
 	endif
 endfunction
-noremap <F5> :call SwitchMouseMode()<CR>
+noremap <F8> :call SwitchMouseMode()<CR>
 
 " = PHP
 
@@ -97,7 +98,11 @@ let g:phpcomplete_mappings = {
 "let g:phpcomplete_active_interface_extensions
 "let g:phpcomplete_active_constant_extensions
 
+" hardtime
+let g:hardtime_default_on = 1
+let g:hardtime_timeout = 500
 
 " = HotKeys
+noremap <F6> :NERDTreeToggle<CR>
+noremap <c-n> :set number!<CR>
 noremap <F7> :set paste!<CR>
-
