@@ -4,6 +4,9 @@
 - name: create folder autoload
   file: path=/home/{{ user_name }}/.vim/autoload state=directory mode=0755
 
+- name: delete folder bundle
+  shell: rm -rf /home/{{ user_name }}/.vim/bundle
+
 - name: create folder bundle
   file: path=/home/{{ user_name }}/.vim/bundle state=directory mode=0755
 
@@ -20,75 +23,106 @@
     state: link
 
 # Themes
-- name: install plugin xoria256.vim
-  git: repo=https://github.com/vim-scripts/xoria256.vim.git dest=/home/{{ user_name }}/.vim/bundle/xoria256.vim depth=1 force=no
-
-- name: install plugin darcula
-  git: repo=https://github.com/blueshirts/darcula.git dest=/home/{{ user_name }}/.vim/bundle/darcula depth=1 force=no
+- name: install vim themes
+  git: repo={{ item.url }} dest=/home/{{ user_name }}/.vim/bundle/{{ item.folder }} depth=1 force=no
+  with_items:
+        -
+          url: https://github.com/vim-scripts/xoria256.vim.git
+          folder: xoria256.vim
+        -
+          url: https://github.com/blueshirts/darcula.git
+          folder: darcula
 
 
 # Vim Buffer
-- name: install plugin vim-bufkill
-  git: repo=https://github.com/qpkorr/vim-bufkill.git dest=/home/{{ user_name }}/.vim/bundle/vim-bufkill depth=1 force=no
-
-- name: install plugin buftabline
-  git: repo=https://github.com/ap/vim-buftabline.git dest=/home/{{ user_name }}/.vim/bundle/vim-buftabline depth=1 force=no
+- name: install vim buffer
+  git: repo={{ item.url }} dest=/home/{{ user_name }}/.vim/bundle/{{ item.folder }} depth=1 force=no
+  with_items:
+        -
+          url: https://github.com/qpkorr/vim-bufkill.git
+          folder: vim-bufkill
+        -
+          url: https://github.com/ap/vim-buftabline.git
+          folder: vim-buftabline
 
 # Plugins
-- name: install plugin vim-airline
-  git: repo=https://github.com/vim-airline/vim-airline.git dest=/home/{{ user_name }}/.vim/bundle/vim-airline depth=1 force=no
-
-- name: install plugin ultisnips
-  git: repo=https://github.com/SirVer/ultisnips.git dest=/home/{{ user_name }}/.vim/bundle/ultisnips depth=1 force=no
-
-- name: install plugin tcomment_vim
-  git: repo=https://github.com/tomtom/tcomment_vim.git dest=/home/{{ user_name }}/.vim/bundle/tcomment_vim depth=1 force=no
-
-#- name: install plugin tabular
-#  git: repo=https://github.com/godlygeek/tabular.git dest=/home/{{ user_name }}/.vim/bundle/tabular depth=1 force=no
-
-- name: install plugin syntastic
-  git: repo=https://github.com/scrooloose/syntastic.git dest=/home/{{ user_name }}/.vim/bundle/syntastic depth=1 force=no
-
-- name: install plugin vim-easymotion
-  git: repo=https://github.com/easymotion/vim-easymotion.git dest=/home/{{ user_name }}/.vim/bundle/vim-easymotion depth=1 force=no
+- name: install vim plugins
+  git: repo={{ item.url }} dest=/home/{{ user_name }}/.vim/bundle/{{ item.folder }} depth=1 force=no
+  with_items:
+        -
+          url: https://github.com/vim-airline/vim-airline.git
+          folder: vim-airline
+        -
+          url: https://github.com/SirVer/ultisnips.git
+          folder: ultisnips
+        -
+          url: https://github.com/tomtom/tcomment_vim.git
+          folder: tcomment_vim
+        -
+          url: https://github.com/gioele/vim-autoswap.git
+          folder: vim-autoswap
+        -
+          url: https://github.com/scrooloose/syntastic.git
+          folder: syntastic
+        -
+          url: https://github.com/easymotion/vim-easymotion.git
+          folder: vim-easymotion
+        -
+          url: https://github.com/takac/vim-hardtime.git
+          folder: vim-hardtime
 
 # Git
-- name: install plugin vim-fugitive
-  git: repo=https://github.com/tpope/vim-fugitive.git dest=/home/{{ user_name }}/.vim/bundle/vim-fugitive depth=1 force=no
+- name: install vim git plugins
+  git: repo={{ item.url }} dest=/home/{{ user_name }}/.vim/bundle/{{ item.folder }} depth=1 force=no
+  with_items:
+        -
+          url: https://github.com/tpope/vim-fugitive.git
+          folder: vim-fugitive
 
 # Similar IDE
-- name: install plugin nerdtree
-  git: repo=https://github.com/scrooloose/nerdtree.git dest=/home/{{ user_name }}/.vim/bundle/nerdtree depth=1 force=no
-
-- name: install plugin nerdtree-git-plugin
-  git: repo=https://github.com/Xuyuanp/nerdtree-git-plugin.git dest=/home/{{ user_name }}/.vim/bundle/nerdtree-git-plugin depth=1 force=no
-
-- name: install plugin vim-auto-save
-  git: repo=https://github.com/vim-scripts/vim-auto-save.git dest=/home/{{ user_name }}/.vim/bundle/vim-auto-save depth=1 force=no
-
-- name: install plugin editorconfig-vim
-  git: repo=https://github.com/editorconfig/editorconfig-vim.git dest=/home/{{ user_name }}/.vim/bundle/editorconfig-vim depth=1 force=no
-
-- name: install plugin auto-pairs
-  git: repo=https://github.com/yukunlin/auto-pairs.git dest=/home/{{ user_name }}/.vim/bundle/auto-pairs depth=1 force=no
-
-- name: install plugin ctrlp.vim
-  git: repo=https://github.com/kien/ctrlp.vim.git dest=/home/{{ user_name }}/.vim/bundle/ctrlp.vim depth=1 force=no
-
-- name: install plugin vim-surround
-  git: repo=https://github.com/tpope/vim-surround.git dest=/home/{{ user_name }}/.vim/bundle/vim-surround depth=1 force=no
+- name: install vim Similar IDE plugins
+  git: repo={{ item.url }} dest=/home/{{ user_name }}/.vim/bundle/{{ item.folder }} depth=1 force=no
+  with_items:
+        -
+          url: https://github.com/scrooloose/nerdtree.git
+          folder: nerdtree
+        -
+          url: https://github.com/Xuyuanp/nerdtree-git-plugin.git
+          folder: nerdtree-git-plugin
+        -
+          url: https://github.com/vim-scripts/vim-auto-save.git
+          folder: vim-auto-save
+        -
+          url: https://github.com/editorconfig/editorconfig-vim.git
+          folder: editorconfig-vim
+        -
+          url: https://github.com/kien/ctrlp.vim.git
+          folder: ctrlp.vim
+        -
+          url: https://github.com/tpope/vim-surround.git
+          folder: vim-surround
 
 # PHP
-- name: install plugin php.vim
-  git: repo=https://github.com/StanAngeloff/php.vim.git dest=/home/{{ user_name }}/.vim/bundle/php.vim depth=1 force=no
-
-- name: install plugin vim-php-cs-fixer
-  git: repo=https://github.com/stephpy/vim-php-cs-fixer.git dest=/home/{{ user_name }}/.vim/bundle/vim-php-cs-fixer depth=1 force=no
-
-- name: install plugin phpcomplete.vim
-  git: repo=https://github.com/shawncplus/phpcomplete.vim.git dest=/home/{{ user_name }}/.vim/bundle/phpcomplete.vim depth=1 force=no
+- name: install vim PHP plugins
+  git: repo={{ item.url }} dest=/home/{{ user_name }}/.vim/bundle/{{ item.folder }} depth=1 force=no
+  with_items:
+        -
+          url: https://github.com/StanAngeloff/php.vim.git
+          folder: php.vim
+        -
+          url: https://github.com/stephpy/vim-php-cs-fixer.git
+          folder: vim-php-cs-fixer
+        -
+          url: https://github.com/shawncplus/phpcomplete.vim.git
+          folder: phpcomplete.vim
 
 # Frontend
-- name: install plugin vim-coffee-script
-  git: repo=https://github.com/kchmck/vim-coffee-script.git dest=/home/{{ user_name }}/.vim/bundle/vim-coffee-script depth=1 force=no
+- name: install vim Frontend plugins
+  git: repo={{ item.url }} dest=/home/{{ user_name }}/.vim/bundle/{{ item.folder }} depth=1 force=no
+  with_items:
+        -
+          url: https://github.com/kchmck/vim-coffee-script.git
+          folder: vim-coffee-script
+        -
+          url: https://github.com/posva/vim-vue.git
+          folder: vim-vue
